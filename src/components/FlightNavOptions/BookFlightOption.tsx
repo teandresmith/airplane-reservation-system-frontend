@@ -1,13 +1,5 @@
 import React from 'react'
-import {
-  Box,
-  IconButton,
-  Grid,
-  Button,
-  SxProps,
-  Theme,
-  Stack,
-} from '@mui/material'
+import { Box, IconButton, Grid, Button, Stack } from '@mui/material'
 import AdapterMoment from '@date-io/moment'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { CompareArrows } from '@mui/icons-material'
@@ -22,6 +14,7 @@ import {
   MHFSelect,
   MHFDatePicker,
 } from 'mui-hook-form-mhf'
+import { customStyles } from './styles'
 
 type FormData = {
   tripType: 'One Way' | 'Round Trip'
@@ -76,15 +69,6 @@ const BookFlightOption = () => {
     dispatch(setFlightDetails(data))
     navigate('/flights')
   })
-
-  const customStyles: SxProps<Theme> = {
-    '& .MuiInputBase-root.MuiInput-root::after': {
-      borderColor: 'black',
-    },
-    '& .MuiFormLabel-root.MuiInputLabel-root.Mui-focused': {
-      color: 'black',
-    },
-  }
 
   const airports: Array<Airport> = [
     {

@@ -1,9 +1,11 @@
 import React from 'react'
-import { Box, Grid, Typography, Button, SxProps, Theme } from '@mui/material'
+import { Box, Grid, Typography, Button } from '@mui/material'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import AdapterMoment from '@date-io/moment'
 import { useForm } from 'react-hook-form'
 import { MHFDatePicker, MHFTextField } from 'mui-hook-form-mhf'
+import { customStyles } from './styles'
+import axios from 'axios'
 
 type FormData = {
   firstName: string
@@ -16,16 +18,35 @@ type FormData = {
 const MyTripsFlightOption = () => {
   const methods = useForm<FormData>()
 
-  const onSubmit = methods.handleSubmit((data: FormData) => console.log(data))
+  const onSubmit = methods.handleSubmit(async (data: FormData) => {
+    console.log(data)
 
-  const customStyles: SxProps<Theme> = {
-    '& .MuiInputBase-root.MuiInput-root::after': {
-      borderColor: 'black',
-    },
-    '& .MuiFormLabel-root.MuiInputLabel-root.Mui-focused': {
-      color: 'black',
-    },
-  }
+    try {
+      /*
+          If all fields match, the backend will send a JWT token so user may access their My Trips Page
+          If it fails, it will set an error that reservation could not be found. Message will be vague 
+          to protect from brute force attacks.
+
+          My Trips Page will provide user the ability to change reservation seat, cancel reservation or 
+          if they have not yet paid, they can pay for the reservation.
+
+      */
+
+      const response = await axios.get(
+        'http://localhost:8080/api/reservation/:reservationid'
+      )
+
+      if (
+        response.data.result.firstName === data.firstName &&
+        response.data.result.lastName === data.lastName &&
+        response.data.result.reservationNumber === data.reservationNumber &&
+        response.data.result.flightNumber === data.flightNumber &&
+        response.data.result.departDate === data.departDate.toString()
+      ) {
+      }
+    } catch (error) {}
+  })
+
   return (
     <>
       <Box component='form' onSubmit={onSubmit}>

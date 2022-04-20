@@ -1,7 +1,9 @@
 import React from 'react'
-import { Stack, Box, Button, Typography, SxProps, Theme } from '@mui/material'
+import { Stack, Box, Button, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { MHFTextField } from 'mui-hook-form-mhf'
+import { customStyles } from './styles'
+import axios from 'axios'
 
 type FormData = {
   reservationNumber: string
@@ -12,15 +14,39 @@ type FormData = {
 const CheckInFlightOption = () => {
   const methods = useForm<FormData>()
 
-  const onSubmit = methods.handleSubmit((data: FormData) => console.log(data))
-  const customStyles: SxProps<Theme> = {
-    '& .MuiInputBase-root.MuiInput-root::after': {
-      borderColor: 'black',
-    },
-    '& .MuiFormLabel-root.MuiInputLabel-root.Mui-focused': {
-      color: 'black',
-    },
-  }
+  const onSubmit = methods.handleSubmit(async (data: FormData) => {
+    try {
+      // Use a fetch request to check if reservation number exists
+      const response = await axios.get(
+        'http://localhost:8080/api/reservation/:reservationid'
+      )
+
+      // Check if reservation exists && IF so change checkedIn Status to true.
+      if (
+        response.data.result.reservationNumber === data.reservationNumber &&
+        response.data.result.firstName === data.firstName &&
+        response.data.result.lastName === data.lastName
+      ) {
+        const config = {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+        await axios.patch(
+          'http://localhost:8080/api/reservation/:reservationid',
+          { checkedIn: true },
+          config
+        )
+      }
+
+      // Set Snackbar => to show that check in was successful.
+    } catch (error) {
+      console.log(error)
+    }
+
+    console.log(data)
+  })
+
   return (
     <>
       <Box component='form' onSubmit={onSubmit}>

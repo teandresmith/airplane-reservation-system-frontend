@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Airport, FlightDetails } from '../Types'
+import { FlightDetails, Ticket } from '../Types'
 
 interface BookingState {
   step: 'Depart' | 'Return' | 'Payment'
   flightDetails: FlightDetails
-  selectedFlights: Array<Object>
+  selectedFlights: Array<Ticket>
 }
 
 const initialState: BookingState = {

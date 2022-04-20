@@ -20,22 +20,7 @@ import { Flight } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { setStep, setSelectedFlights } from '../../redux/services/bookingSlice'
-
-interface FlightInfo {
-  flightNumber: string
-  flightDuration: string
-  startTime: string
-  endTime: string
-  departAirport: string
-  destAirport: string
-  seatTypes: Array<Object>
-}
-
-interface Ticket {
-  flightInfo: FlightInfo
-  fareClass: string
-  price: string
-}
+import { FlightInfo, Ticket } from '../../redux/Types'
 
 const Return = () => {
   const [ticketWindow, setTicketWindow] = React.useState(false)

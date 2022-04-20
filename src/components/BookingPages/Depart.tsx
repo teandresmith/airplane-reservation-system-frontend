@@ -19,25 +19,10 @@ import {
 import { Flight } from '@mui/icons-material'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { setSelectedFlights, setStep } from '../../redux/services/bookingSlice'
+import { FlightInfo, Ticket } from '../../redux/Types'
 
 type DepartProps = {
   tripType: 'One Way' | 'Round Trip' | undefined
-}
-
-interface FlightInfo {
-  flightNumber: string
-  flightDuration: string
-  startTime: string
-  endTime: string
-  departAirport: string
-  destAirport: string
-  seatTypes: Array<Object>
-}
-
-interface Ticket {
-  flightInfo: FlightInfo
-  fareClass: string
-  price: string
 }
 
 const Depart = ({ tripType }: DepartProps) => {
@@ -95,8 +80,8 @@ const Depart = ({ tripType }: DepartProps) => {
   const selectTicket = (flight: FlightInfo, selectedSeat: any) => {
     const ticket: Ticket = {
       flightInfo: flight,
-      fareClass: selectedSeat.seatType,
-      price: selectedSeat.price,
+      fareClass: selectedSeat?.seatType,
+      price: selectedSeat?.price,
     }
 
     console.log(flight, selectedSeat)

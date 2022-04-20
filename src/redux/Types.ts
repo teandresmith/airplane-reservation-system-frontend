@@ -22,3 +22,19 @@ export interface Reservation {
   lastName: string
   price: string
 }
+
+export interface FlightInfo {
+  flightNumber: string
+  flightDuration: string
+  startTime: string
+  endTime: string
+  departAirport: string
+  destAirport: string
+  seatTypes: Array<{ seatType?: string; price?: number }>
+}
+
+export interface Ticket {
+  flightInfo: FlightInfo
+  fareClass: 'Economy' | 'Business' | 'First Class' | undefined
+  price: number
+}

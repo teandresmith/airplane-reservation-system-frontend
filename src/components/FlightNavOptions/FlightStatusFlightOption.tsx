@@ -1,9 +1,10 @@
 import React from 'react'
-import { Box, Button, Grid, Typography, SxProps, Theme } from '@mui/material'
+import { Box, Button, Grid, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import AdapterMoment from '@date-io/moment'
 import { MHFAutocomplete, MHFDatePicker, MHFTextField } from 'mui-hook-form-mhf'
+import { customStyles } from './styles'
 
 type FormData = {
   from: string
@@ -15,7 +16,11 @@ type FormData = {
 const FlightStatusFlightOption = () => {
   const methods = useForm<FormData>()
 
-  const onSubmit = methods.handleSubmit((data) => console.log(data))
+  const onSubmit = methods.handleSubmit((data) => {
+    console.log(data)
+
+    // Create a Modal that displays flight status. In this project case, the flight status will always be "active"
+  })
   const airports = [
     {
       label: 'Okinawa, Japan - OKA',
@@ -25,14 +30,7 @@ const FlightStatusFlightOption = () => {
     },
     { label: 'Tampa, Florida - TPA', city: 'Tampa', country: 'USA', id: 1972 },
   ]
-  const customStyles: SxProps<Theme> = {
-    '& .MuiInputBase-root.MuiInput-root::after': {
-      borderColor: 'black',
-    },
-    '& .MuiFormLabel-root.MuiInputLabel-root.Mui-focused': {
-      color: 'black',
-    },
-  }
+
   return (
     <>
       <Box component='form' onSubmit={onSubmit}>
