@@ -12,13 +12,14 @@ type FormData = {
 }
 
 const CheckInFlightOption = () => {
+  const [checkInSnackbar, setCheckInSnackbar] = React.useState(false)
   const methods = useForm<FormData>()
 
   const onSubmit = methods.handleSubmit(async (data: FormData) => {
     try {
       // Use a fetch request to check if reservation number exists
       const response = await axios.get(
-        'http://localhost:8080/api/reservation/:reservationid'
+        `${process.env.REACT_APP_BACKEND_URL}/reservation/${data.reservationNumber}`
       )
 
       // Check if reservation exists && IF so change checkedIn Status to true.
@@ -33,7 +34,7 @@ const CheckInFlightOption = () => {
           },
         }
         await axios.patch(
-          'http://localhost:8080/api/reservation/:reservationid',
+          `${process.env.REACT_APP_BACKEND_URL}/reservation/${data.reservationNumber}`,
           { checkedIn: true },
           config
         )

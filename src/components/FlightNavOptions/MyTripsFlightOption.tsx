@@ -33,7 +33,7 @@ const MyTripsFlightOption = () => {
       */
 
       const response = await axios.get(
-        'http://localhost:8080/api/reservation/:reservationid'
+        `${process.env.REACT_APP_BACKEND_URL}/reservation/${data.reservationNumber}`
       )
 
       if (
@@ -87,18 +87,6 @@ const MyTripsFlightOption = () => {
               sx={customStyles}
             />
           </Grid>
-          <Grid item md={5}>
-            <MHFTextField
-              name='flightNumber'
-              control={methods.control}
-              id='flightnumber-input'
-              label='Flight Number'
-              variant='standard'
-              required
-              sx={customStyles}
-            />
-          </Grid>
-
           <Grid item md={5}>
             <LocalizationProvider dateAdapter={AdapterMoment}>
               <MHFDatePicker

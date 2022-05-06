@@ -3,7 +3,7 @@ import { Airport } from '../Types'
 
 export const airportAPI = createApi({
   reducerPath: 'airportAPI',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BACKEND_URL }),
   endpoints: (builder) => ({
     getAirports: builder.query<Airport, string>({
       query: () => '/airports',

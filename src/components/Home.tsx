@@ -16,6 +16,7 @@ import BookFlightOption from './FlightNavOptions/BookFlightOption'
 import CheckInFlightOption from './FlightNavOptions/CheckInFlightOption'
 import FlightStatusFlightOption from './FlightNavOptions/FlightStatusFlightOption'
 import MyTripsFlightOption from './FlightNavOptions/MyTripsFlightOption'
+import Footer from './Footer'
 
 type Props = {}
 
@@ -190,10 +191,14 @@ const Home = (props: Props) => {
             sx={{ width: '40%' }}
           />
           <Box component='div' sx={{ width: '40%' }}>
-            <Typography variant='h6' sx={{ fontSize: 28 }}>
+            <Typography variant='h6' sx={{ fontSize: 30 }}>
               Let's Stay Safe
             </Typography>
-            <Typography variant='body1' fontSize={20} sx={{ pt: 1 }}>
+            <Typography
+              variant='body1'
+              fontSize={{ sm: 20, md: 26 }}
+              sx={{ pt: 1 }}
+            >
               It is our priority to keep all of our passengers safe during these
               times. For that reason, we have placed safety and cleanliness at
               the forefront of our travel experience.
@@ -216,10 +221,14 @@ const Home = (props: Props) => {
             sx={{ width: '40%' }}
           />
           <Box component='div' sx={{ width: '40%' }}>
-            <Typography variant='h6' sx={{ fontSize: 28 }}>
+            <Typography variant='h6' sx={{ fontSize: 30 }}>
               Our Travel Recommendations
             </Typography>
-            <Typography variant='body1' fontSize={20} sx={{ pt: 1 }}>
+            <Typography
+              variant='body1'
+              fontSize={{ sm: 20, md: 26 }}
+              sx={{ pt: 1 }}
+            >
               To reduce exposure and touchpoints, we recommend passengers
               check-in electronically. With our new QR code app, passengers are
               now able to check-in bags touchless.
@@ -242,10 +251,14 @@ const Home = (props: Props) => {
             sx={{ width: '40%' }}
           />
           <Box component='div' sx={{ width: '40%' }}>
-            <Typography variant='h6' sx={{ fontSize: 28 }}>
+            <Typography variant='h6' sx={{ fontSize: 30 }}>
               Unsure Where to Go?
             </Typography>
-            <Typography variant='body1' fontSize={20} sx={{ pt: 1 }}>
+            <Typography
+              variant='body1'
+              fontSize={{ sm: 20, md: 26 }}
+              sx={{ pt: 1 }}
+            >
               No worries, if you are unsure where you would like to go and would
               like to know the locations we support. Then feel free to take a
               look at our interactive map.
@@ -256,10 +269,7 @@ const Home = (props: Props) => {
           </Box>
         </Stack>
       </Box>
-      <Box
-        component='div'
-        sx={{ width: '100%', height: 150, backgroundColor: 'black' }}
-      />
+      <Footer />
     </>
   )
 }
